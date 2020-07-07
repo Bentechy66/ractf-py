@@ -1,4 +1,5 @@
 from .abc import APIBaseObject
+from .helpers.requests import post
 from .hint import Hint
 
 
@@ -19,3 +20,8 @@ class Challenge(APIBaseObject):
                 continue
             hints.append(Hint(hint["id"], self, self.ctf, data=hint))
         self.hints = hints
+    
+    def submit_flag(self, flag):
+        resp = post("challenges/submit_flag/", json={"challenge": self.id, "flag": flag})
+        self._fill_attrs()
+        return resp["m"] == "correct_flag"
