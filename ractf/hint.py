@@ -13,4 +13,4 @@ class Hint(APIBaseObject):
         return f"hints/{self.id}/"
 
     def use(self):
-        self._set_attrs(post("hints/use/", self.ctf, json={"id": self.id})["d"])
+        self._fill_attrs(data=post("hints/use/", self.ctf, json={"id": self.id})["d"])
