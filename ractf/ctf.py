@@ -6,6 +6,9 @@ class CTF:
         self.api_base = api_base
         self.auth_token = None
 
+    def get_challenge(self, id):
+        return Challenge(id, self)
+
     def get_challenges(self):
         resp = get("challenges/categories/", self)
         challenges = []
