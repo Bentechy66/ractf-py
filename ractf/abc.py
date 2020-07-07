@@ -12,10 +12,10 @@ class APIBaseObject(ABC):
     def get_api_path(self):
         raise NotImplementedError()
 
-    def _set_attrs(self, values):
+    def _set_attrs_on_remote(self, values):
         patch(self.get_api_path(), values, self._ctf)
 
-    def _set_attr(self, name, value):
+    def _set_attr_on_remote(self, name, value):
         self._set_attrs({name: value})
 
     def _get_object(self):
