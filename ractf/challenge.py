@@ -22,6 +22,6 @@ class Challenge(APIBaseObject):
         self.hints = hints
     
     def submit_flag(self, flag):
-        resp = post("challenges/submit_flag/", json={"challenge": self.id, "flag": flag})
+        resp = post("challenges/submit_flag/", self.ctf, json={"challenge": self.id, "flag": flag})
         self._fill_attrs()
         return resp["m"] == "correct_flag"
