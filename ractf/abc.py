@@ -6,7 +6,15 @@ from .helpers.requests import get, patch
 class APIBaseObject(ABC):
     def __init__(self, ctf, data=None):
         self._ctf = ctf
+        self._type = self.__class__.__name__
+        self.id = None
         self._fill_attrs(data=data)
+
+    def __repr__(self):
+        return f"<{self._type} [{self.id}]>"
+    
+    def __str__(self):
+        return self.name
 
     @abstractmethod
     def get_api_path(self):
