@@ -13,7 +13,7 @@ class File(APIBaseObject):
 
     def save(self, path):
         with open(path, "wb") as f:
-            path.write(self.read())
+            f.write(self.read())
 
     def read(self):
-        return get(self.url, ctf).content
+        return get(self.url, self.ctf)
